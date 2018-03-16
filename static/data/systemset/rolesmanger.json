@@ -1,0 +1,26 @@
+{
+  "code": "200",
+  "msg": "操作成功",
+  "result": {
+    "rolesList": [
+      {
+        "id": "1",
+        "name": "超级管理员",
+        "type": "本机构及下属",
+        "description": "吃的最多"
+      },
+      {
+        "id": "2",
+        "name": "管理员",
+        "type": "本机构",
+        "description": "长的最帅"
+      },
+      {
+        "id": "3",
+        "name": "管理员",
+        "type": "本科室",
+        "description": "玩的最好"
+      }
+    ]
+  }
+}

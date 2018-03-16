@@ -1,0 +1,38 @@
+{
+    "success": true,
+    "msg": "成功",
+    "data": {
+        "userList": [
+            {
+                "userId": "1",
+                "accountNumber": "sina@sina.com",
+                "name": "王小1",
+                "org": {
+                    "id": "r1",
+                    "name": "中山医院"
+                },
+                "phoneNumber": "13912345678"
+            },
+            {
+                "userId": "2",
+                "accountNumber": "sina@sina.com",
+                "name": "王小2",
+                "org": {
+                    "id": "r2",
+                    "name": "湖南医院"
+                },
+                "phoneNumber": "13912345678"
+            },
+            {
+                "userId": "3",
+                "accountNumber": "sina@sina.com",
+                "name": "王小3",
+                "org": {
+                    "id": "r3",
+                    "name": "协和医院"
+                },
+                "phoneNumber": "13912345678"
+            }
+        ]
+    }
+}

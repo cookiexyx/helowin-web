@@ -1,0 +1,154 @@
+{
+    "msg": "成功",
+    "data": {
+        "id": "b50880ef3f0149d9a4121107a89d583d",
+        "accountNumber": "admin",
+        "name": "超级管理员",
+        "password": "928bfd2577490322a6e19b793691467e",
+        "regionId": "f86a3bdd5227432a885ae476ce5fc7c2",
+        "email": "1233356@qq.com",
+        "phoneNumber": "13888888",
+        "createTime": "2018-02-04 16:28:21",
+        "updateTime": "2018-02-24 10:39:35",
+        "status": 0,
+        
+        "roleList": [
+            {
+                "id": "381c8cd6360d4278a4a66eb2d2245076",
+                "name": "医院本级系统管理员",
+                "type": "本机构及下属机构",
+                "description": "管理本机构人员、权限，本机构模板",
+                "createTime": "2018-02-04 16:07:26",
+                "updateTime": "2018-02-24 10:39:09",
+                "status": 0,
+                "userList": null,
+                "permissionList": []
+            },
+            {
+                "id": "c040aa5616d74a88b7e8e517f713d7ab",
+                "name": "超级管理员",
+                "type": "本机构及下属机构",
+                "description": "管理全部的人员、权限和公共模板",
+                "createTime": "2018-02-04 16:06:37",
+                "updateTime": "2018-02-26 18:44:17",
+                "status": 0,
+                "userList": null,
+                "permissionList": [
+                    {
+                        "path": "/statistic",
+                        "component": "Layout",
+                        "icon": "zujian",
+                        "name": "统计分析",
+                        "childrenList": [
+                            {
+                                "path": "index",
+                                "name": "统计分析",
+                                "component": "_import('instrument/index')"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "/instrument",
+                        "component": "Layout",
+                        "icon": "zonghe",
+                        "name": "仪表盘",
+                        "childrenList": [
+                            {
+                                "path": "index",
+                                "name": "仪表盘",
+                                "component": "_import('instrument/index')"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "/cockpit",
+                        "component": "Layout",
+                        "icon": "wujiaoxing",
+                        "name": "驾驶舱",
+                        "childrenList": [
+                            {
+                                "path": "index",
+                                "name": "驾驶舱",
+                                "component": "_import('cockpit/index')"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "/Dataset",
+                        "component": "Layout",
+                        "icon": "icons",
+                        "name": "数据设置",
+                        "childrenList": [
+                            {
+                                "path": "datasource",
+                                "name": "数据源管理",
+                                "component": "_import('dataset/datasource')"
+                            },
+                            {
+                                "path": "tablemanager",
+                                "name": "数据表管理",
+                                "component": "_import('dataset/tablemanager')"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "/systemset",
+                        "component": "Layout",
+                        "icon": "EXCEL",
+                        "name": "系统设置",
+                        "childrenList": [
+                            {
+                                "path": "usermanger",
+                                "name": "用户管理",
+                                "component": "_import('systemset/usermanger')"
+                            },
+                            {
+                                "path": "rolesmanger",
+                                "name": "角色管理",
+                                "component": "_import('systemset/rolesmanger')"
+                            },
+                            {
+                                "path": "rolesandauthority",
+                                "name": "角色权限关系管理",
+                                "component": "_import('systemset/rolesandauthority')"
+                            },
+                            {
+                                "path": "menuManager",
+                                "name": "菜单管理",
+                                "component": "_import('systemset/menuManager')"
+                            },
+                            {
+                                "path": "areaManager",
+                                "name": "区域管理",
+                                "component": "_import('systemset/areaManager')"
+                            },
+                            {
+                                "path": "organizaManager",
+                                "name": "机构管理",
+                                "component": "_import('systemset/organizaManager')"
+                            },
+                            {
+                                "path": "sectionManager",
+                                "name": "科室管理",
+                                "component": "_import('systemset/sectionManager')"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "org": null,
+        "department": null,
+        "region": null,
+        "userAvatar": {
+            "id": "742a0be26cb44cbda77098fdc4d64b75",
+            "userId": "b50880ef3f0149d9a4121107a89d583d",
+            "avatarName": "testAvatar3.JPG",
+            "avatarPath": "/service/data/avatar/",
+            "createTime": "2018-02-05 11:24:46",
+            "updateTime": "2018-02-05 15:17:45",
+            "status": 0
+        }
+    },
+    "success": true
+}

@@ -1,0 +1,78 @@
+{
+  "code": "200",
+  "msg": "操作成功",
+  "result": {
+    "sectionList": [
+      {
+        "id": "1",
+        "name": "好络维医疗",
+        "orgId": "内科",
+        "phoneNumber": "1190000",
+        "children": [
+          {
+            "id": "2",
+            "name": "北京中日医院",
+            "orgId": "外科",
+            "phoneNumber": "1190000",
+            "children": [
+              {
+                "id": "3",
+                "name": "草庙村卫生站",
+                "orgId": "外科",
+                "phoneNumber": "1190000"
+              },
+              {
+                "id": "4",
+                "name": "草庙村卫生站",
+                "orgId": "内科",
+                "phoneNumber": "1190000"
+              },
+              {
+                "id": "5",
+                "name": "草庙村卫生站",
+                "orgId": "内科",
+                "phoneNumber": "1190000"
+              },
+              {
+                "id": "6",
+                "name": "草庙村卫生站",
+                "orgId": "内科",
+                "phoneNumber": "1190000"
+              }
+            ]
+          },
+          {
+            "id": "7",
+            "name": "草庙村卫生站",
+            "orgId": "1",
+            "phoneNumber": "1190000"
+          },
+          {
+            "id": "8",
+            "name": "草庙村卫生站",
+            "orgId": "内科",
+            "phoneNumber": "1190000"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "name": "解放军301医院",
+        "orgId": "内科",
+        "phoneNumber": "1190000"
+      },
+      {
+        "id": "10",
+        "name": "卢同县人民医院",
+        "orgId": "内科",
+        "phoneNumber": "1190000"
+      },
+      {
+        "id": "11",
+        "name": "高青县人民医院",
+        "orgId": "内科",
+        "phoneNumber": "1190000"
+      }
+    ]
+  }
+}

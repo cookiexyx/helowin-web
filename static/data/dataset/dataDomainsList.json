@@ -1,0 +1,34 @@
+{
+    "msg": "成功",
+    "data": {
+        "result":[
+            { 
+                "id":11, 
+                "identification":"CV02.10.001",
+                "name":"这是什么名字",
+                "domainValueList":[
+                    {
+                        "domainValueKey":"值",
+                        "name":"值得含义"
+                    },
+                    {
+                        "domainValueKey": "鬼",
+                        "name": "鬼得含义"
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "identification":"CV02.10.001",
+                "name": "啊啊啊啊啊啊啊啊",
+                "domainValueList": [
+                    {
+                        "domainValueKey": "值",
+                        "name": "值得含义"
+                    }
+                ]
+            }
+        ]
+    },
+    "success": true
+}

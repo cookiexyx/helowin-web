@@ -1,0 +1,44 @@
+{
+    "msg": "成功",
+    "data": {
+        "createTime": "2018-02-04 16:28:21",
+        "updateTime": "2018-02-24 10:39:35",
+        "newData":100,
+        "dataTotal":44444,
+        "columnName": [
+            {"name":"id"},
+            {"name":"name"},
+            {"name":"pid"},
+            {"name":"level"},
+            {"name":"longcode"},
+            {"name":"address"}
+        ],
+        "tableData":[
+            {
+                "id":1080,
+                "name":"sad",
+                "pid":8592,
+                "level":10,
+                "longcode":7777777,
+                "address":"ShangHai"
+            },
+            {
+                "id": 1080,
+                "name": "sad",
+                "pid": 8592,
+                "level": 10,
+                "longcode": 7777777,
+                "address": "ShangHai"
+            },
+            {
+                "id": 1080,
+                "name": "sad",
+                "pid": 8592,
+                "level": 10,
+                "longcode": 7777777,
+                "address": "ShangHai"
+            }
+        ]
+    },
+    "success": true
+}

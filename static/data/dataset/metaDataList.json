@@ -1,0 +1,28 @@
+{
+  "msg": "成功",
+  "data": {
+    "result": [
+      {
+        "id": 11,
+        "number": "1",
+        "metadataKey": "CV02.10.001",
+        "name": "门急诊收入",
+        "columnName": "字段名称",
+        "dataTableInfo": { "tableName": "数据列表一" },
+        "columnComment": "字段中文名",
+        "dictionary": "性别代码"
+      },
+      {
+        "id": 12,
+        "number": "2",
+        "metadataKey": "CV02.10.001",
+        "name": "门急诊收入",
+        "columnName": "字段名称",
+        "dataTableInfo": { "tableName": "数据列表二" },
+        "columnComment": "字段中文名",
+        "dictionary": "性别代码"
+      }
+    ]
+  },
+  "success": true
+}

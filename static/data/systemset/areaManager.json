@@ -1,0 +1,103 @@
+{
+  "code": "200",
+  "msg": "操作成功",
+  "result": {
+    "areaList": [
+      {
+        "id": "1",
+        "name": "浙江省",
+        "aboveId": "1-1",
+        "longcode": "1-1",
+        "level": "0",
+        "children": [
+          {
+            "id": "2",
+            "name": "杭州市",
+            "aboveId": "1-2",
+            "longcode": "1-2",
+            "level": "0",
+            "children": [
+              {
+                "id": "3",
+                "name": "西湖区",
+                "aboveId": "1-3",
+                "longcode": "1-3",
+                "level": "0"
+              },
+              {
+                "id": "4",
+                "name": "拱墅区",
+                "aboveId": "1-4",
+                "longcode": "1-4",
+                "level": "0"
+              },
+              {
+                "id": "5",
+                "name": "上城区",
+                "aboveId": "1-5",
+                "longcode": "1-5",
+                "level": "0"
+              },
+              {
+                "id": "6",
+                "name": "江干区",
+                "aboveId": "1-6",
+                "longcode": "1-6",
+                "level": "0"
+              }
+            ]
+          },
+          {
+            "id": "7",
+            "name": "绍兴市",
+            "aboveId": "1-7",
+            "longcode": "1-7",
+            "level": "1"
+          },
+          {
+            "id": "8",
+            "name": "宁波市",
+            "aboveId": "1-8",
+            "longcode": "1-8",
+            "level": "2"
+          },
+          {
+            "id": "9",
+            "name": "温州市",
+            "aboveId": "1-9",
+            "longcode": "1-9",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "name": "江苏省",
+        "aboveId": "1-10",
+        "longcode": "1-10",
+        "level": "0"
+      },
+      {
+        "id": "11",
+        "name": "山东省",
+        "aboveId": "1-11",
+        "longcode": "1-11",
+        "level": "0"
+      },
+      {
+        "id": "12",
+        "name": "辽宁省",
+        "aboveId": "1-12",
+        "longcode": "1-12",
+        "level": "0"
+      },
+      {
+        "id": "13",
+        "name": "北京市",
+        "aboveId": "1-14",
+        "longcode": "1-14",
+        "level": "0"
+      }
+    ]
+  }
+}

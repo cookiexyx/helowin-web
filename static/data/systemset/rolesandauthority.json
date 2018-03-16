@@ -1,0 +1,61 @@
+{
+    "code": "200",
+    "msg": "操作成功",
+    "result": {
+        "accessParentList":["1","2","3"],
+        "accessChildrenList":["A","B","E"],
+        "list":[
+            {
+                "id": "1",
+                "name": "统计分析",
+                "disabled":true,
+                "children": [
+                    {
+                        "id": "A",
+                        "name": "经营分析"
+                    },
+                    {
+                        "id": "B",
+                        "name": "收入分析"
+                    },
+                    {
+                        "id": "C",
+                        "name": "医保分析"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "name": "仪表盘",
+                "disabled": false,
+                "children":""
+            },
+            {
+                "id": "3",
+                "name": "驾驶舱",
+                "disabled": false,
+                "children": ""
+            },
+            {
+                "id": "4",
+                "name": "绩效考核",
+                "disabled": false,
+                "children": [
+                    {
+                        "id": "D",
+                        "name": "绩效指标管理"
+                    },
+                    {
+                        "id": "E",
+                        "name": "积分卡设置"
+                    },
+                    {
+                        "id": "F",
+                        "name": "绩效考核"
+                    }
+                ]
+            }
+        ]
+
+    }
+}

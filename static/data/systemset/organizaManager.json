@@ -1,0 +1,122 @@
+{
+  "code": "200",
+  "msg": "操作成功",
+  "result": {
+    "organizaList": [
+      {
+        "id": "1",
+        "name": "好络维医疗",
+        "innerOrgId": "1-1",
+        "regionLongcode": "1-1",
+        "level": "0",
+        "isLeaf": "1",
+        "address": "杭州软件园",
+        "phoneNumber": "1190000",
+        "children": [
+          {
+            "id": "2",
+            "name": "北京中日医院",
+            "innerOrgId": "1-1",
+            "regionLongcode": "1-1",
+            "level": "0",
+            "isLeaf": "1",
+            "address": "北京北京",
+            "phoneNumber": "1190000",
+            "children": [
+              {
+                "id": "3",
+                "name": "草庙村卫生站",
+                "innerOrgId": "1-1",
+                "regionLongcode": "1-1",
+                "level": "0",
+                "isLeaf": "1",
+                "address": "北京北京",
+                "phoneNumber": "1190000"
+              },
+              {
+                "id": "4",
+                "name": "草庙村卫生站",
+                "innerOrgId": "1-1",
+                "regionLongcode": "1-1",
+                "level": "0",
+                "isLeaf": "1",
+                "address": "北京北京",
+                "phoneNumber": "1190000"
+              },
+              {
+                "id": "5",
+                "name": "草庙村卫生站",
+                "innerOrgId": "1-1",
+                "regionLongcode": "1-1",
+                "level": "0",
+                "isLeaf": "1",
+                "address": "北京北京",
+                "phoneNumber": "1190000"
+              },
+              {
+                "id": "6",
+                "name": "草庙村卫生站",
+                "innerOrgId": "1-1",
+                "regionLongcode": "1-1",
+                "level": "0",
+                "isLeaf": "1",
+                "address": "北京北京",
+                "phoneNumber": "1190000"
+              }
+            ]
+          },
+          {
+            "id": "7",
+            "name": "草庙村卫生站",
+            "innerOrgId": "1-1",
+            "regionLongcode": "1-1",
+            "level": "0",
+            "isLeaf": "1",
+            "address": "北京北京",
+            "phoneNumber": "1190000"
+          },
+          {
+            "id": "8",
+            "name": "草庙村卫生站",
+            "innerOrgId": "1-1",
+            "regionLongcode": "1-1",
+            "level": "0",
+            "isLeaf": "1",
+            "address": "北京北京",
+            "phoneNumber": "1190000"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "name": "解放军301医院",
+        "innerOrgId": "1-1",
+        "regionLongcode": "1-1",
+        "level": "0",
+        "isLeaf": "1",
+        "address": "北京北京",
+        "phoneNumber": "1190000"
+      },
+      {
+        "id": "10",
+        "name": "卢同县人民医院",
+        "innerOrgId": "1-1",
+        "regionLongcode": "1-1",
+        "level": "0",
+        "isLeaf": "1",
+        "address": "北京北京",
+        "phoneNumber": "1190000"
+      },
+      {
+        "id": "11",
+        "name": "高青县人民医院",
+        "innerOrgId": "1-1",
+        "regionLongcode": "1-1",
+        "level": "0",
+        "isLeaf": "1",
+        "address": "北京北京",
+        "phoneNumber": "1190000"
+      }
+    ]
+  }
+}
