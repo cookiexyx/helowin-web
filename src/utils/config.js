@@ -19,7 +19,10 @@ const services = {
     tablesList: '../static/data/dataset/tablesList.json',
     dataDomainsList: '../static/data/dataset/dataDomainsList.json', // 查询所有数据字典
     addDomain: '../static/data/dataset/addDomain.json', // 添加数据字典
-    updateDomain: '../static/data/dataset/updateDomain.json', // 更新数据字典
+    updateDomain: '../static/data/dataset/updateDomain.json',
+    colunmsList: '../static/data/dataset/columnsList.json', // 更新数据字典
+    dashboardDirectories: '../static/data/dashboard/dashboardDirectories.json',
+    dashboardTemplates: '../static/data/dashboard/dashboardTemplates.json', // 查询文件夹下面所有仪表盘
     noData: ''
   },
 
@@ -32,12 +35,18 @@ const services = {
     deleteUser: '/visualize/user/delete_user', // 删除用户
     searchUser: '/visualize/user/list_users_by_username', // 根据姓名模糊查询
     // 角色权限管理
-    rolesandauthority: '/visualize/role_permission/list_menu_permissions_by_role', // 获取角色菜单权限
-    roleBoardAuthority: '/visualize/role_permission/list_dashboard_permissions_by_role', // 获取角色仪表盘权限
-    roleCockpitAuthority: '/visualize/role_permission/list_cockpit_permissions_by_role', // 获取角色驾驶舱权限
-    updateAuthority: '/visualize/role_permission/update_menu_permissions_by_role', // 修改角色菜单权限
-    updateBoardAuthority: '/visualize/role_permission/update_dashboard_permissions_by_role', // 修改角色仪表盘权限
-    updateCockpitAuthority: '/visualize/role_permission/update_cockpit_permissions_by_role', // 修改角色驾驶舱权限
+    rolesandauthority:
+      '/visualize/role_permission/list_menu_permissions_by_role', // 获取角色菜单权限
+    roleBoardAuthority:
+      '/visualize/role_permission/list_dashboard_permissions_by_role', // 获取角色仪表盘权限
+    roleCockpitAuthority:
+      '/visualize/role_permission/list_cockpit_permissions_by_role', // 获取角色驾驶舱权限
+    updateAuthority:
+      '/visualize/role_permission/update_menu_permissions_by_role', // 修改角色菜单权限
+    updateBoardAuthority:
+      '/visualize/role_permission/update_dashboard_permissions_by_role', // 修改角色仪表盘权限
+    updateCockpitAuthority:
+      '/visualize/role_permission/update_cockpit_permissions_by_role', // 修改角色驾驶舱权限
     // 菜单管理
     menuPermissionsList: '/visualize/permission/list_permissions', // 获取菜单列表
     addPermission: '/visualize/permission/add_permission', // 增加菜单
@@ -59,9 +68,11 @@ const services = {
     byDomainIdentification: '/visualize/domain/list_domains_by_identification', // 数据字典标识模糊查询
     byDomainName: '/visualize/domain/list_domains_by_name', // 数据字典名称模糊查询
     deleteDomain: '/visualize/domain/delete_empty_domain', // 删除数据字典
+    // 仪表盘模板管理
+    dashboardDirectories: '/visualize/dashboard/list_directories', // 查询仪表盘所有文件夹
+    dashboardTemplates: '/visualize/dashboard/list_templates_by_directory_id', // 查询文件夹下面所有仪表盘
     noData: ''
   }
 }
 
 export const API_CONFIG = Object.assign(services[env])
-

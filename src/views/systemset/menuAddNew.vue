@@ -48,13 +48,14 @@ export default {
            this.dialogFormVisible = true
        },
        // 修改
-       updateDialog(row){
+       updateDialog(row,index){
            this.title = '修改菜单'
            this.dialogFormVisible = true
+           let _path = index === -1 ? row.path : row.path+'/'+row.childrenList[index].path
            this.form = {
                editType: true,
                id: row.id,
-               path: row.url,
+               path: _path,
                name: row.name
            }
        },

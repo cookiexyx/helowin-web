@@ -127,7 +127,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 el-table-column {
   width: 20%;
 }

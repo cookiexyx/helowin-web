@@ -14,7 +14,13 @@
                     <span v-show="form.editType == true">{{form.orgName}}</span>
                 </el-form-item>
                 <el-form-item label="录入员工姓名" :label-width="formLabelWidth" prop="name">
-                    <el-input v-model="form.name" v-show="form.editType == false" auto-complete="off" placeholder="请输入员工姓名" :maxlength="30"></el-input>
+                    <el-input 
+                    v-model.trim="form.name" 
+                    v-show="form.editType == false" 
+                    auto-complete="off"
+                    placeholder="请输入员工姓名" 
+                    :maxlength="30"
+                    ></el-input>
                     <span v-show="form.editType == true">{{form.name}}</span>
                 </el-form-item>    
                 <el-form-item label="注册账号" :label-width="formLabelWidth" prop="accountNumber">
@@ -22,10 +28,10 @@
                     <span v-show="form.editType == true">{{form.accountNumber}}</span>
                 </el-form-item>     
                 <el-form-item label="密码" prop="password" :label-width="formLabelWidth">
-                    <el-input v-model="form.password" type="password" auto-complete="off" placeholder="输入密码"></el-input>
+                    <el-input v-model.trim="form.password" type="password" auto-complete="off" placeholder="输入密码" :maxlength="30"></el-input>
                 </el-form-item>   
                 <el-form-item label="确认密码" prop="checkPass" :label-width="formLabelWidth">
-                    <el-input v-model="form.checkPass" type="password" auto-complete="off" placeholder="确认密码"></el-input>
+                    <el-input v-model.trim="form.checkPass" type="password" auto-complete="off" placeholder="确认密码" :maxlength="30"></el-input>
                 </el-form-item> 
                 <el-form-item label="用户角色" :label-width="formLabelWidth" prop="roles">
                     <!-- <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox> -->

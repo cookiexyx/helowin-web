@@ -245,7 +245,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .el-dialog--small {
   width: 30%;
 }

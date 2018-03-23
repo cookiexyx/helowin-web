@@ -31,7 +31,7 @@ export default {
 <style scoped>
 .hamburger {
   display: inline-block;
-  cursor: pointer;
+  /* cursor: pointer; */
   width: 20px;
   height: 20px;
   transform: rotate(0deg);
@@ -40,7 +40,7 @@ export default {
 }
 
 .hamburger.is-active {
-  transform: rotate(90deg);
+  /* transform: rotate(90deg); */
   outline-color: #fff;
 }
 </style>

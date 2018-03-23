@@ -89,7 +89,7 @@
             </el-form-item>
 
               <el-form-item label="区域概况：" prop="description">
-                <el-input type="textarea" v-model="formScoure.description" ></el-input>
+                <el-input type="textarea" v-model="formScoure.description" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
               </el-form-item>
 
             <div class="button-footer">
@@ -162,9 +162,6 @@ export default {
         areacode: [
           { required: true, message: '请输入电话区号', trigger: 'blur' }
           // { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }
-        ],
-        description: [
-          { required: true, message: '请输入区域概况', trigger: 'blur' }
         ]
       }
     }
@@ -216,19 +213,6 @@ export default {
 
     // 添加节点按钮
     append(data, paretNode) {
-      // console.log(data.regionList)
-      // this.edit = false
-      // this.save = true
-      // const newChild = { id: id++, name: '', children: [] }
-      // if (!data.children) {
-      //   this.$set(data, 'children', [])
-      // }
-      // data.children.push(newChild)
-      // this.formScoure = {
-      //   id: this.parentAboveId,
-      //   name: newChild.name,
-      //   aboveId: this.parentAboveId
-      // }
       if (this.selectTree.id !== undefined && this.selectTree.id !== null) {
         const newChild = { id: id++, name: '', children: [] }
         if (!data.children) {
@@ -237,7 +221,8 @@ export default {
         data.children.push(newChild)
         this.formScoure = {
           id: this.parentAboveId,
-          aboveId: this.parentAboveId
+          // aboveId: this.parentAboveId
+          aboveId: this.parentName
         }
         this.regionInfo = {}
         this.save = true
@@ -290,7 +275,7 @@ export default {
           // console.log(formScoure)
           var dataPost = {
             name: this.formScoure.name,
-            aboveId: this.formScoure.aboveId,
+            aboveId: this.parentAboveId,
             longcode: this.formScoure.longcode,
             level: this.formScoure.level,
             postcode: this.formScoure.postcode,
@@ -329,7 +314,7 @@ export default {
             .post('/visualize/region/update_region', {
               id: this.formScoure.id,
               name: this.formScoure.name,
-              aboveId: this.formScoure.aboveId,
+              aboveId: this.formScoure.parentAboveId,
               longcode: this.formScoure.longcode,
               level: this.formScoure.level,
               postcode: this.formScoure.postcode,
@@ -356,7 +341,7 @@ export default {
 
     handleNodeClick(scope, formScoure) {
       this.selectTree = scope
-      // console.log(scope)
+      console.log(scope)
       // 当前节点的数据
       this.save = false
       this.edit = true
@@ -395,7 +380,7 @@ export default {
 }
 .earaTop {
   width: 300px;
-  height: 45px;
+  height: 40px;
   background-color: #d5e2f0;
   line-height: 45px;
   padding-left: 10px;
@@ -404,21 +389,20 @@ export default {
 }
 
 .areaLeft {
-  margin: 50px 100px 0 100px;
+  margin: 50px 0px 0 20px;
   border-radius: 10px;
   display: inline-block;
   border: 1px solid #f2f2f2;
   border-radius: 5px;
-  box-shadow: 10px 10px 5px #ccc;
 }
 
 .areaRight {
   display: inline-block;
-  height: 25px;
-  width: 50%;
+  height: 35px;
+  width: 70%;
   position: absolute;
   border-bottom: 1px solid #cccccc;
-  margin: 50px 0px 0 50px;
+  margin: 55px 0px 0 30px;
 }
 .span_icon {
   float: right;

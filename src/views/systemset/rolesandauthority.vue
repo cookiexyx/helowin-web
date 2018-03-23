@@ -89,24 +89,23 @@ export default {
     },
     // 加载不同视图
     loadingViews(type) {
-      switch(type)
-      {
-      case '1':
-        this.$refs.child1.getAuthorityList()
-        break;
-      case '2':
-        this.$refs.child2.getRoleBoardAuthority(type)
-        break;
-      case '3':
-        this.$refs.child3.getRoleBoardAuthority(type)
-        break;
+      switch (type) {
+        case '1':
+          this.$refs.child1.getAuthorityList()
+          break
+        case '2':
+          this.$refs.child2.getRoleBoardAuthority(type)
+          break
+        case '3':
+          this.$refs.child3.getRoleBoardAuthority(type)
+          break
       }
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .el-header {
   background-color: #fff;
   color: #333;
@@ -122,14 +121,13 @@ export default {
   padding: 15px;
 }
 
-.role-list{
+.role-list {
   min-height: 500px;
 }
 
 .el-main {
   background-color: #e9eef3;
   color: #333;
-  text-align: center;
   line-height: 160px;
 }
 
@@ -148,7 +146,7 @@ body > .el-container {
   margin-left: 5%;
 }
 .el-menu-item {
-    text-align: left;
+  text-align: left;
 }
 /* .el-tabs__nav{
     height: 39px;

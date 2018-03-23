@@ -12,7 +12,6 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-  config.headers['JWT_TOKEN'] = getToken()
   if (store.getters.token) {
     config.headers['JWT_TOKEN'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
   }

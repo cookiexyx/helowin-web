@@ -53,7 +53,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'login',
   computed: {
-    ...mapGetters(['roles','currentRole'])
+    ...mapGetters(['roles', 'currentRole'])
   },
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -72,7 +72,7 @@ export default {
     }
     return {
       value: '',
-      dialogVisible:false,
+      dialogVisible: false,
       loginForm: {
         accountNumber: 'admin',
         password: ''
@@ -113,7 +113,7 @@ export default {
             .catch((err) => {
               this.loading = false
               this.dialogVisible = false
-              this.$message.error('账号密码输入错误');
+              this.$message.error('账号密码输入错误')
             })
         } else {
           return false
@@ -121,16 +121,16 @@ export default {
       })
     },
     // 确定以该角色登陆
-    ensureLogin(index){
+    ensureLogin(index) {
       if (index === '') {
-        this.$message({ message: '请选择一个角色', type: 'warning' });
-      }else{
+        this.$message({ message: '请选择一个角色', type: 'warning' })
+      } else {
         // console.log(this.roles[index].permissionList)
         this.dialogVisible = false
         // 设置当前角色路由
-        this.$store.commit('SET_ROUTERS',this.roles[index].permissionList)
+        this.$store.commit('SET_ROUTERS', this.roles[index].permissionList)
         // 保存当前角色信息
-        this.$store.commit('SET_CURRENTROLE',this.roles[index])
+        this.$store.commit('SET_CURRENTROLE', this.roles[index])
         this.$router.push({ path: '/dashboard' })
       }
     }
@@ -227,19 +227,19 @@ $light_gray: #505750;
     height: 40px;
     margin-top: 10px;
   }
-  .el-dialog__footer{
+  .el-dialog__footer {
     text-align: center;
   }
-  .role-input{
+  .role-input {
     border: 1px solid #cccaca;
     border-radius: 4px;
     width: 100%;
   }
-  .el-input--suffix{
+  .el-input--suffix {
     width: 100%;
   }
   .el-dialog__body {
-      padding: 30px 30px;
+    padding: 30px 30px;
   }
 }
 </style>

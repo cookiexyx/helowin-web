@@ -54,7 +54,7 @@ export default {
 
   data() {
     return {
-      total:10,
+      total: 10,
       changePageSize: [10, 20, 30, 40],
       userName: '',
       loading: false,
@@ -102,13 +102,14 @@ export default {
 
     // 根据姓名查询
     searchName() {
-      this.$http.post(this.API_CONFIG.searchUser, {
+      this.$http
+        .post(this.API_CONFIG.searchUser, {
           name: this.userName
         })
-        .then((res) => {
+        .then(res => {
           this.data = res.data.data
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err)
         })
     },
@@ -142,7 +143,8 @@ export default {
   }
 }
 </script>
-<style>
+
+<style scoped>
 el-table-column {
   width: 20%;
 }

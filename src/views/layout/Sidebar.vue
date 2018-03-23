@@ -7,7 +7,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       :default-active="$route.path">
-    <sidebar-item :routes='routers'></sidebar-item>
+    <sidebar-item :routes='roleRouters'></sidebar-item>
   </el-menu>  
 </template>
 
@@ -31,10 +31,10 @@ export default {
     // 从localStorage本地存储中获取数据(线上路由)
     this.roleRouters = JSON.parse(window.localStorage.getItem('routers'))
     // 本地路由
-    this.routers.forEach( item => {
-      item['childrenList'] = item['children']
-      delete item['children']
-    })
+    // this.routers.forEach(item => {
+    //   item['childrenList'] = item['children']
+    //   delete item['children']
+    // })
     // console.log(this.routers)
   }
 }

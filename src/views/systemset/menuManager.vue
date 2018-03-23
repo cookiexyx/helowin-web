@@ -23,8 +23,8 @@
                 <el-form-item>
                     <template slot-scope="scope">
                         <el-button @click="addNew()" type="text" size="small">新增</el-button>
-                        <el-button type="text" size="small">修改</el-button>
-                        <el-button type="text" size="small">删除</el-button>
+                        <el-button @click="update(props.row,index)" type="text" size="small">修改</el-button>
+                        <el-button @click="deleteFun(props.row.id)" type="text" size="small">删除</el-button>
                     </template>
                 </el-form-item>
                 </el-form>
@@ -41,7 +41,7 @@
             <el-table-column label="操作" min-width="20%">
             <template slot-scope="scope">
                 <el-button @click="addNew()" type="text" size="small">新增</el-button>
-                <el-button @click="update(scope.row)" type="text" size="small">修改</el-button>
+                <el-button @click="update(scope.row, -1)" type="text" size="small">修改</el-button>
                 <el-button @click="deleteFun(scope.row.id)" type="text" size="small">删除</el-button>
             </template>
             </el-table-column>
@@ -90,8 +90,8 @@
             this.$refs.child.showDialog()
         },
         // 修改
-        update(row){
-            this.$refs.child.updateDialog(row)
+        update(row,index){
+            this.$refs.child.updateDialog(row,index)
         },
         // 删除
         deleteFun(id){

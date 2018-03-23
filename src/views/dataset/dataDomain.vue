@@ -48,6 +48,7 @@
 import NoData from "@/views/common/noData"
 import DataDomainDialog from "@/views/dataset/dataDomainDialog"
 
+
 export default {
   components: { NoData, DataDomainDialog },
   data(){
@@ -70,6 +71,7 @@ export default {
         this.$refs.child.updateDialog(row)
     },
     fetchData() {
+        console.log()
       this.loading = true
       this.$http
         .post(this.API_CONFIG.dataDomainsList, {})

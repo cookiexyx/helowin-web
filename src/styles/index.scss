@@ -6,6 +6,7 @@ body {
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
+  background-color: #f2f2f2;
 }
 
 html {
@@ -21,6 +22,10 @@ html {
 a:focus,
 a:active {
   outline: none;
+}
+
+li {
+  list-style-type: none;
 }
 
 a,
@@ -74,4 +79,10 @@ a:hover {
   height: 20px;
   width: 100%;
   background-color: #f2f2f2;
+}
+
+.el-table th {
+  background: #d5e2f0 !important;
+  font-size: 15px;
+  color: black;
 }

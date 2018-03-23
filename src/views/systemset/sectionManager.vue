@@ -15,14 +15,14 @@
         </span>
       </div>
       <el-tree
-        ref="eventCategoryTree"
-        :data="data"
-        :props="defaultProps"
-        node-key="id"
-        @node-click="handleNodeClick"
+         ref="eventCategoryTree"
+         :data="data"
+         :props="defaultProps"
+         node-key="id"
+         @node-click="handleNodeClick"
         :render-content="renderContent"
         :default-expanded-keys= "expandedDepartmentIds"
-        highlight-current
+         highlight-current
         :load="loadNode"
         :expand-on-click-node="false"
         lazy
@@ -33,7 +33,7 @@
       <!--   -->
       <!--    @node-click="handleNodeClick" -->
     </div>
-
+    
     <!-- 右侧展示区域 -->
     <div class="areaRight">
       <div class="title">
@@ -42,13 +42,11 @@
       </div>
       <!-- 表单 -->
       <div style="margin-top: 60px;"></div>
-
       <el-form :label-position="labelPosition" 
       label-width="100px" 
       :model="formScoure" 
       ref="saveForm"
        :rules="formRules">
-
         <el-form-item label="科室名称：" prop="name">
           <el-input v-model="formScoure.name" ></el-input>
         </el-form-item>
@@ -60,14 +58,14 @@
           <el-input v-model="formScoure.leader"></el-input>
         </el-form-item>
 
-        <el-form-item label="所属学科：" prop="regionLongcode">
-          <el-autocomplete
-            popper-class="my-autocomplete"
+        <el-form-item label="所属学科：" prop="name">
+          <!-- <el-autocomplete
+            class="my-autocomplete"
             v-model="subjectInfo.name"
             :fetch-suggestions="querySearchSubjects"
             placeholder="请选择学科"
             @focus="handleSelect">
-            <template slot-scope="props">
+            <template slot-scope="props" >
               <div style="width: 500px">
                 <el-tree
                   :data="subjects"
@@ -75,16 +73,28 @@
                   node-key="code"
                   v-show="showSubjectTree"
                   :load="loadSubjectList"
-                  :default-expanded-keys="expandedSubjectIds"
-                  lazy
+                 
+                  :default-expanded-keys="expandedSubjectIds"                 
                   :expand-on-click-node="false"
                   @node-click="handleSubjectNodeClick"></el-tree>
               </div>
             </template>
-          </el-autocomplete>
+          </el-autocomplete> -->
+                  <el-cascader
+                    class="my-autocomplete"
+                    placeholder="请选择学科" 
+                    :options="allAubjects"
+                    :props="subjectProps"
+                     v-model="subjectInfo2"
+                     filterable
+                     @change="handleChange"
+                   > 
+                  </el-cascader>
+                  <!--  @change="handleChange" -->
+                 <!--  @focus="handleSubjectNodeClick" -->
         </el-form-item>
 
-        <el-form-item label="联系电话：" prop="phoneNumber"   >
+        <el-form-item label="联系电话：" prop="phoneNumber">
           <el-input v-model="formScoure.phoneNumber" ></el-input>
         </el-form-item>
         <el-form-item label="手机：" prop="telephone">
@@ -103,13 +113,13 @@
         </el-form-item>
 
         <el-form-item label="简介：" prop="description">
-          <el-input v-model="formScoure.description" type="textarea"></el-input>
+          <el-input v-model="formScoure.description" type="textarea" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="addForm('saveForm',formScoure)" v-show="save">保存</el-button>
-          <el-button type="primary" @click="submitForm('saveForm',formScoure)" v-show="edit">修改</el-button>
-          <el-button @click="resetForm('saveForm')">重置</el-button>
+            <el-button type="primary" @click="addForm('saveForm',formScoure)" v-show="save">保存</el-button>
+            <el-button type="primary" @click="submitForm('saveForm',formScoure)" v-show="edit">修改</el-button>
+            <el-button @click="resetForm('saveForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -141,6 +151,7 @@ export default {
       save: true,
       edit: false,
       // sectionList: [],
+      subjectInfo2: [],
       expandedDepartmentIds: [],
       selectTree: {},
       formScoure: {
@@ -154,8 +165,10 @@ export default {
         description: '',
         status: ''
       },
-      subjects: [],
-      subjectInfo: {},
+      allAubjects: [],
+      subjectInfo: {
+        name: []
+      },
       defaultProps: {
         children: 'children',
         label: 'name',
@@ -164,8 +177,11 @@ export default {
       },
       subjectProps: {
         label: 'name',
-        children: 'children'
+        children: 'children',
+        value: 'name'
       },
+      subjectName: '',
+      parentNode: [],
       subject: null,
       showSubjectTree: true,
       expandedSubjectIds: [],
@@ -195,6 +211,7 @@ export default {
   // 查询科室列表
   created() {
     this.querySeach()
+    this.loadSubjectList()
   },
   methods: {
     querySeach() {
@@ -209,34 +226,67 @@ export default {
           console.log(error)
         })
     },
+    // 学科获取
     loadSubjectList(node, resolve) {
-      if (node.level === 0) {
-        this.$http
-          .post('/visualize/subject/list_subjects', {})
-          .then(res => {
-            this.subjects = res.data.data.subjectList
-          })
-          .catch(function(error) {
-            console.log(error)
-          })
-      } else {
-        this.expandedSubjectIds.push(node.key)
-        this.$http
-          .post('/visualize/subject/list_subjects', {
-            code: node.key
-          })
-          .then(res => {
-            let result = res.data.data.subjectList
-            resolve(result)
-          })
-          .catch(function(error) {
-            console.log(error)
-          })
-      }
+      // console.log(node, resolve)
+      // if (node.level === 0) {
+      this.$http
+        .post('/visualize/subject/list_subjects', {})
+        .then(res => {
+          // console.log(res)
+          this.allAubjects = res.data.data.subjectList
+          // console.log(this.allAubjects) //
+          // this.allAubjects.forEach(carrentId => {
+          //   this.secondId = carrentId.children
+          //   // console.log(carrentId.name)
+          //   this.secondId.forEach(currentSecond => {
+          //     // console.log(currentSecond.name)
+          //     this.currentSecondId = currentSecond.id
+          //   })
+          // })
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+
+      // } else {
+      // this.expandedSubjectIds.push(node.key)
+      // console.log(this.expandedDepartmentIds) // 子菜单
+      // this.$http
+      //   .post('/visualize/subject/list_subjects', {
+      //     // code: node.key
+      //   })
+      //   .then(res => {
+      //     let result = res.data.data.subjectList
+      //     resolve(result)
+      //     // console.log(result)
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error)
+      //   })
+      // }
+    },
+
+    handleChange(value) {
+      console.log(value)
+      // console.log(this.allAubjects) //
+      // this.allAubjects.forEach(carrentId => {
+      //   this.secondId = carrentId.children
+      //   // console.log(carrentId.name)
+      //   this.secondId.forEach(currentSecond => {
+      //     // console.log(currentSecond.name)
+      //     if (value[0] === carrentId.name && value[1] === currentSecond.name) {
+      //       // 当前层级的id
+      //       console.log(currentSecond.id)
+      //     }
+      //   })
+      // })
     },
     handleSubjectNodeClick(data) {
-      this.subjectInfo = data
+      // this.subjectInfo = data
       this.showSubjectTree = false
+      console.log(data)
+      // data.forEach(element => {})
     },
     handleSelect() {
       this.showSubjectTree = true
@@ -255,6 +305,7 @@ export default {
             })
             .then(res => {
               let result = res.data.data
+              console.log(res)
               result.forEach(item => {
                 item['isLeaf'] = true
               })
@@ -297,13 +348,16 @@ export default {
       var restaurants = this.subjects
       // 调用 callback 返回建议列表的数据
       cb(restaurants)
+      // console.log(restaurants) // 一个外科数据
     },
+
     // 新增节点
     append() {
       // console.log(this.selectTree)
       if (this.selectTree.innerOrgId !== undefined) {
         this.formScoure = {}
         this.subjectInfo = {}
+        this.subject = {}
         this.save = true
         this.edit = false
         this.orgInfo = this.selectTree
@@ -327,9 +381,10 @@ export default {
           .then(() => {
             this.$http
               .post('/visualize/department/delete_department', {
-                id: this.selectTree.id
+                departmentId: this.selectTree.id
               })
               .then(res => {
+                // console.log(this.selectTree.id)
                 if (res.data.success === true) {
                   Message.success('删除成功')
                   this.querySeach()
@@ -363,7 +418,8 @@ export default {
           var addDepartment = {
             name: this.formScoure.name,
             leader: this.formScoure.leader,
-            subjectId: this.subjectInfo.id,
+            // subjectId: this.subjectInfo.id,
+            subjectId: this.subject_id,
             orgId: this.orgInfo.id,
             email: this.formScoure.email,
             phoneNumber: this.formScoure.phoneNumber,
@@ -398,8 +454,10 @@ export default {
             .post('/visualize/department/update_department', {
               id: this.formScoure.id,
               name: this.formScoure.name,
-              leader: this.formScoure.aboveId,
-              subjectId: this.subjectInfo.id,
+              // leader: this.formScoure.aboveId,
+              leader: this.formScoure.leader,
+              // subjectId: this.subjectInfo.id,
+              subjectId: this.currentSecondId,
               orgId: this.orgInfo.id,
               email: this.formScoure.email,
               phoneNumber: this.formScoure.phoneNumber,
@@ -408,6 +466,7 @@ export default {
               status: this.status === '启用' ? 0 : 1
             })
             .then(res => {
+              // console.log(this.currentSecondId)
               if (res.data.success === true) {
                 Message.success('修改成功')
                 this.querySeach()
@@ -439,8 +498,9 @@ export default {
         status: ''
       }
     },
-    // 点击右侧显示数据
+    // 点击左侧显示数据
     handleNodeClick(scope, formScoure) {
+      console.log(scope)
       this.selectTree = scope
       if (
         scope.leader !== undefined &&
@@ -451,6 +511,18 @@ export default {
         this.edit = true
         this.orgInfo = scope.organization
         this.subjectInfo = scope.subject
+        this.subjectInfo2 = []
+        // console.log(scope.subject.code)
+        this.subjectCode = scope.subject.code
+        let parentCode = this.subjectCode.slice(0, 4)
+        // console.log(this.allAubjects)
+        let one = this.allAubjects.find(item => {
+          return item.code === parentCode
+        })
+        // 怎么获取当前对象下面以及子对象下面的所有name一次性加入subjectInfo2拼接成一个数组
+        this.subjectInfo2.push(one.name)
+        this.subjectInfo2.push(scope.subject.name)
+        // console.log(this.subjectInfo2)
         if (scope.status === 0) {
           this.status = '启用'
         } else {
@@ -484,7 +556,7 @@ export default {
 }
 .earaTop {
   width: 300px;
-  height: 45px;
+  height: 40px;
   background-color: #d5e2f0;
   line-height: 45px;
   padding-left: 10px;
@@ -492,19 +564,22 @@ export default {
   font-weight: 600;
 }
 .areaLeft {
-  margin: 50px 100px 0 100px;
+  margin: 50px 0px 0 20px;
   border-radius: 10px;
   display: inline-block;
   border: 1px solid #f2f2f2;
   border-radius: 5px;
 }
+.my-autocomplete {
+  width: 390px;
+}
 .areaRight {
   display: inline-block;
-  height: 25px;
-  width: 60%;
+  height: 35px;
+  width: 70%;
   position: absolute;
   border-bottom: 1px solid #cccc;
-  margin: 50px 0px 0 50px;
+  margin: 55px 0px 0 30px;
 }
 .span_icon {
   float: right;

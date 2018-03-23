@@ -19,30 +19,30 @@
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
        <!-- 表单 --> 
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" :label-position="labelPosition" >
-       <el-form-item label="姓 名" prop="name">
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px"  >
+        <el-form-item label="姓 名" prop="name" label-width="ruleFome">
            <el-input v-model="ruleForm.name" ></el-input>
        </el-form-item>
    
-        <el-form-item label="账 号">
+        <el-form-item label="账 号" label-width="ruleFome">
              <el-input placeholder="账户只能一个写死" v-model="ruleForm.input" :disabled="true"  ></el-input>      
         </el-form-item>
 
-          <el-form-item label="电 话" >
+          <el-form-item label="电 话" label-width="ruleFome" >
              <el-input  placeholder="账户只能一个写死" v-model="ruleForm.input"></el-input>      
         </el-form-item>
 
-          <el-form-item label="角 色">
+          <el-form-item label="角 色" label-width="ruleFome">
              <el-input placeholder="账户只能一个写死" v-model="ruleForm.input" :disabled="true"  ></el-input>      
         </el-form-item>
        
-        <el-form-item label="机 构">
+        <el-form-item label="机 构" label-width="ruleFome">
              <el-input placeholder="账户只能一个写死" v-model="ruleForm.input" :disabled="true" ></el-input>      
         </el-form-item>
-
-        <el-form-item>
+          
+         <el-form-item >
            <el-button type="primary" @click="submitForm1(ruleForm)" class="button1" >确 定</el-button>
-        </el-form-item>
+         </el-form-item>
       </el-form>    
     </el-tab-pane>
    
@@ -60,7 +60,7 @@
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm2')" class="button2">提交</el-button>
+                <el-button type="primary" @click="submitForm('ruleForm2')" class="button2">提交</el-button>
             </el-form-item>
         </el-form>
     </el-tab-pane>
@@ -105,6 +105,7 @@ export default {
         name: 'admin',
         input: 'passmin'
       },
+      ruleFome: '200px',
       imageUrl: '',
       rules: {
         name: [
@@ -190,9 +191,10 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+
+<style rel="stylesheet/scss" lang="scss" scoped>
 .button1 {
-  margin-left: 310px;
+  margin-left: 230px;
 }
 .button2 {
   margin-left: 310px;

@@ -1,0 +1,11 @@
+{
+  "msg": "成功",
+  "data": {
+    "columnsList": [
+      { "id": 0, "columnName": "王", "columnComment": "www" },
+      { "id": 1, "columnName": "亚", "columnComment": "yyy" },
+      { "id": 2, "columnName": "如", "columnComment": "rrr" }
+    ]
+  },
+  "success": true
+}

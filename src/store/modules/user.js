@@ -44,7 +44,7 @@ const user = {
         login(accountNumber, userInfo.password)
           .then(response => {
             // console.log(response)
-            // console.log(response.headers.jwt_token)
+            // console.log(response.headers)
             setToken(response.headers.jwt_token)
             commit('SET_TOKEN', response.headers.jwt_token)
             commit('SET_ROLES', response.data.data.roleList)

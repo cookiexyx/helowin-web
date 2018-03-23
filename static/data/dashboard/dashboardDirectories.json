@@ -1,0 +1,59 @@
+{
+    "msg": "成功",
+    "data": {
+        "result": [
+            {
+                "id": "1",
+                "tableInfoList": [
+                    {
+                        "id": "s1",
+                        "name": "业务指标表",
+                        "comment": "业务指标表",
+                        "sourceId": "2ea6120a55044db584a7b1e9eddc4791",
+                        "directoryId": "2ea6120a55044db584a7b1e9eddc4791",
+                        "createTime": "2018-03-05 11:01:30",
+                        "updateTime": "2018-03-05 11:01:30",
+                        "status": 0
+                    }
+                ],
+                "name": "图表管理",
+                "createTime": "2018-03-05 11:01:30",
+                "updateTime": "2018-03-05 11:01:30",
+                "status": 0
+            },
+            {
+                "id": "2",
+                "dataTableInfoList": [],
+                "name": "统计分析",
+                "createTime": "2018-03-05 18:48:55",
+                "updateTime": "2018-03-05 18:48:55",
+                "status": 0,
+                "tableInfoList": [
+                    {
+                        "id": "s1",
+                        "name": "数据指标表",
+                        "comment": "业务指标表",
+                        "sourceId": "2ea6120a55044db584a7b1e9eddc4791",
+                        "directoryId": "2ea6120a55044db584a7b1e9eddc4791",
+                        "createTime": "2018-03-05 11:01:30",
+                        "updateTime": "2018-03-05 11:01:30",
+                        "status": 0
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "dataTableInfoList": [],
+                "name": "经营分析",
+                "createTime": "2018-03-05 18:48:10",
+                "updateTime": "2018-03-05 18:48:10",
+                "status": 0
+            }
+        ],
+        "pageNo": 1,
+        "totalPage": 1,
+        "pageSize": 10,
+        "totalCount": 8
+    },
+    "success": true
+}

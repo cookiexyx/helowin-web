@@ -1,0 +1,32 @@
+{
+    "msg": "成功",
+    "data": {
+        "templatesList": [
+            {
+                "id": "s1",
+                "name": "业务指标表",
+                "comment": "业务指标表",
+                "sourceId": "2ea6120a55044db584a7b1e9eddc4791",
+                "directoryId": "2ea6120a55044db584a7b1e9eddc4791",
+                "createTime": "2018-03-05 11:01:30",
+                "updateTime": "2018-03-05 11:01:30",
+                "status": 0
+            },
+            {
+                "id": "s2",
+                "name": "图片指标表",
+                "comment": "图片指标表",
+                "sourceId": "2ea6120a55044db584a7b1e9eddc4791",
+                "directoryId": "2ea6120a55044db584a7b1e9eddc4791",
+                "createTime": "2018-03-05 11:01:30",
+                "updateTime": "2018-03-05 11:01:30",
+                "status": 0
+            }
+        ],
+        "pageNo": 1,
+        "totalPage": 1,
+        "pageSize": 10,
+        "totalCount": 8
+    },
+    "success": true
+}

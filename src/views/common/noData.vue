@@ -3,10 +3,8 @@
 </template>
 <script>
 export default {
-  name:'noData',
-  data(){
-      
-  }
+  name: 'noData',
+  data() {}
 }
 </script>
 <style>

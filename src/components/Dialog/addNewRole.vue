@@ -4,7 +4,7 @@
             <el-form :model="ruleForm" :rules="rules" ref="saveForm" >
  
                 <el-form-item label="角色名称" :label-width="formLabelWidth" prop="name">
-                <el-input v-show="ruleForm.editType == false" v-model="ruleForm.name"  placeholder="请填写角色名称" ></el-input>
+                  <el-input v-show="ruleForm.editType == false" v-model.trim="ruleForm.name"  placeholder="请填写角色名称" ></el-input>
                  <span v-show="ruleForm.editType == true">{{ruleForm.name}}</span>
                 </el-form-item>
  
@@ -42,7 +42,7 @@ export default {
   name: 'addNewRole',
   data() {
     return {
-      title: '新增用户',
+      title: '新增角色',
       dialogFormVisible: false,
       ruleForm: {
         id: '',
@@ -54,7 +54,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '请填写角色名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }
         ],
         type: [
           { required: true, message: '请选择管理范围', trigger: 'change' }
@@ -68,12 +68,12 @@ export default {
   },
   methods: {
     show() {
-      this.title = '新增用户'
+      this.title = '新增角色'
       this.ruleForm.editType = false
       this.dialogFormVisible = true
     },
     editForm(scope, ruleForm) {
-      this.title = '编辑用户'
+      this.title = '编辑角色'
       this.ruleForm = {
         editType: true,
         id: scope.id,

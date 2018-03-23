@@ -2,7 +2,6 @@ import fetch from '@/utils/fetch'
 
 export function login(accountNumber, password) {
   return fetch({
-    // url: '../static/data/login.json',
     url: '/user/login',
     method: 'post',
     data: {

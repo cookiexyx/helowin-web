@@ -56,8 +56,8 @@
             <el-form-item label="机构名称：" prop="name">
                 <el-input v-model="formScoure.name"></el-input>
             </el-form-item>
-            <el-form-item label="机构类型：" prop="orgType">
-                <el-select v-model="formScoure.orgType" placeholder="请选择">
+            <el-form-item label="机构类型：" prop="orgType" class="orgType"> 
+                <el-select v-model="formScoure.orgType" placeholder="请选择" class="areadata">
                   <el-option
                     v-for="item in orgTypes"
                     :key="item"
@@ -66,15 +66,15 @@
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="所属区域：" prop="regionLongcode">
+             <el-form-item label="所属区域：" prop="regionLongcode" >
               <el-autocomplete
-                popper-class="my-autocomplete"
+                class="areadata"
                 v-model="regionInfo.name"
                 :fetch-suggestions="querySearch"
                 placeholder="请选择区域"
                 @focus="handleSelect">
                 <template slot-scope="props">
-                  <div style="width: 500px">
+                  <div >
                     <el-tree
                       :data="regions"
                       :props="regionProps"
@@ -88,6 +88,9 @@
                   </div>
                 </template>
               </el-autocomplete>
+              
+
+
             </el-form-item>
 
             <el-form-item label="层级代码：" prop="level">
@@ -107,7 +110,7 @@
             </el-form-item>
 
             <el-form-item label="是否存在下级机构：" prop="isLeaf">
-                <el-select v-model="isLeaf" placeholder="请选择">
+                <el-select v-model="isLeaf" placeholder="请选择" class="areadata">
                    <el-option value=是></el-option>
                    <el-option value=否></el-option>
              </el-select>
@@ -121,7 +124,7 @@
           </el-form-item>
 
             <el-form-item label="简介：" prop="description">
-                <el-input v-model="formScoure.description" type="textarea"></el-input>
+                <el-input v-model="formScoure.description" type="textarea" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
             </el-form-item>
 
             <el-form-item>
@@ -329,7 +332,7 @@ export default {
             aboveId: node.key
           })
           .then(res => {
-            var result = res.data.data.organizationList
+            let result = res.data.data.organizationList
             resolve(result)
             this.expandedKeys.push(this.selectTree.id)
           })
@@ -390,95 +393,79 @@ export default {
       return <span>{node.data.name}</span>
     },
     // 保存节点按钮
-    submitForm(formName, formScoure) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          var addOrg = {}
-          addOrg['name'] = this.formScoure['name']
-          addOrg['innerOrgId'] = this.formScoure['innerOrgId']
-          addOrg['level'] = this.formScoure['level']
-          addOrg['orgType'] = this.formScoure['orgType']
-          addOrg['address'] = this.formScoure['address']
-          addOrg['email'] = this.formScoure['email']
-          addOrg['description'] = this.formScoure['description']
-          addOrg['phoneNumber'] = this.formScoure['phoneNumber']
-          addOrg['aboveId'] = this.selectTree['id']
-          addOrg['regionLongcode'] = this.regionInfo['longcode']
-          if (this.isLeaf === '是') {
-            addOrg['isLeaf'] = '0'
+    submitForm(formScoure) {
+      let addOrg = {}
+      addOrg['name'] = this.formScoure['name']
+      addOrg['innerOrgId'] = this.formScoure['innerOrgId']
+      addOrg['level'] = this.formScoure['level']
+      addOrg['orgType'] = this.formScoure['orgType']
+      addOrg['address'] = this.formScoure['address']
+      addOrg['email'] = this.formScoure['email']
+      addOrg['description'] = this.formScoure['description']
+      addOrg['phoneNumber'] = this.formScoure['phoneNumber']
+      addOrg['aboveId'] = this.selectTree['id']
+      addOrg['regionLongcode'] = this.regionInfo['longcode']
+      if (this.isLeaf === '是') {
+        addOrg['isLeaf'] = '0'
+      } else {
+        addOrg['isLeaf'] = '1'
+      }
+      if (this.status === '启用') {
+        addOrg['status'] = 0
+      } else {
+        addOrg['status'] = 1
+      }
+      this.$http
+        .post('/visualize/org/add_org', addOrg)
+        .then(res => {
+          if (res.data.success === true) {
+            Message.success('添加成功')
           } else {
-            addOrg['isLeaf'] = '1'
+            Message.error('添加失败')
           }
-          if (this.status === '启用') {
-            addOrg['status'] = 0
-          } else {
-            addOrg['status'] = 1
-          }
-          this.$http
-            .post('/visualize/org/add_org', addOrg)
-            .then(res => {
-              if (res.data.success === true) {
-                Message.success('添加成功')
-                // this.expandedKeys.push(this.selectTree.id)
-                this.expandOrgIds.push(this.selectTree['id'])
-                this.querySeach()
-              } else {
-                Message.error('添加失败')
-              }
-            })
-            .catch(function(error) {
-              console.log(error)
-            })
-          this.expandOrgIds.push(this.selectTree['id'])
-        } else {
-          return false
-        }
-      })
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      this.expandOrgIds.push(this.selectTree['id'])
     },
     // 修改按钮
-    editForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          var updateOrg = {}
-          updateOrg['id'] = this.selectTree['id']
-          updateOrg['name'] = this.formScoure['name']
-          updateOrg['innerOrgId'] = this.formScoure['innerOrgId']
-          updateOrg['level'] = this.formScoure['level']
-          updateOrg['orgType'] = this.formScoure['orgType']
-          updateOrg['address'] = this.formScoure['address']
-          updateOrg['email'] = this.formScoure['email']
-          updateOrg['description'] = this.formScoure['description']
-          updateOrg['phoneNumber'] = this.formScoure['phoneNumber']
-          updateOrg['regionLongcode'] = this.regionInfo['longcode']
-          if (this.isLeaf === '是') {
-            updateOrg['isLeaf'] = '0'
+    editForm() {
+      let updateOrg = {}
+      updateOrg['id'] = this.selectTree['id']
+      updateOrg['name'] = this.formScoure['name']
+      updateOrg['innerOrgId'] = this.formScoure['innerOrgId']
+      updateOrg['level'] = this.formScoure['level']
+      updateOrg['orgType'] = this.formScoure['orgType']
+      updateOrg['address'] = this.formScoure['address']
+      updateOrg['email'] = this.formScoure['email']
+      updateOrg['description'] = this.formScoure['description']
+      updateOrg['phoneNumber'] = this.formScoure['phoneNumber']
+      updateOrg['regionLongcode'] = this.regionInfo['longcode']
+      if (this.isLeaf === '是') {
+        updateOrg['isLeaf'] = '0'
+      } else {
+        updateOrg['isLeaf'] = '1'
+      }
+      if (this.status === '启用') {
+        updateOrg['status'] = 0
+      } else {
+        updateOrg['status'] = 1
+      }
+      this.$http
+        .post('/visualize/org/update_org', updateOrg)
+        .then(res => {
+          if (res.data.success === true) {
+            Message.success('修改成功')
           } else {
-            updateOrg['isLeaf'] = '1'
+            Message.error('修改失败')
           }
-          if (this.status === '启用') {
-            updateOrg['status'] = 0
-          } else {
-            updateOrg['status'] = 1
-          }
-          this.$http
-            .post('/visualize/org/update_org', updateOrg)
-            .then(res => {
-              if (res.data.success === true) {
-                Message.success('修改成功')
-              } else {
-                Message.error('修改失败')
-              }
-            })
-            .catch(function(error) {
-              console.log(error)
-            })
-          this.querySeach()
-        } else {
-          return false
-        }
-      })
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      this.querySeach()
     },
-    // 重置表单
     resetForm(formScoure) {
       alert('重置成功')
       this.formScoure = {
@@ -498,10 +485,8 @@ export default {
     },
     handleNodeClick(scope) {
       this.selectTree = scope
-      // console.log(scope)
       this.save = false
       this.edit = true
-      this.parentLevel = scope.level
       this.parentAboveId = scope.id
       if (scope.isLeaf === '0') {
         this.isLeaf = '是'
@@ -513,7 +498,14 @@ export default {
       } else {
         this.status = '禁用'
       }
-      this.regionInfo = scope.region
+      if (scope.region !== undefined && scope.region !== null) {
+        this.regionInfo = scope.region
+      } else {
+        this.regionInfo = {
+          longcode: '',
+          name: ''
+        }
+      }
       this.$http
         .post('/visualize/org/list_orgs', {
           id: scope.aboveId
@@ -541,12 +533,12 @@ export default {
         regionLongcode: scope.regionLongcode,
         level: scope.level,
         orgType: scope.orgType,
-        email: scope.email,
-        description: scope.description,
         isLeaf: scope.isLeaf,
         address: scope.address,
         phoneNumber: scope.phoneNumber,
-        status: scope.status
+        status: scope.status,
+        email: scope.email,
+        description: scope.description
       }
     }
   }
@@ -571,12 +563,15 @@ export default {
   width: 300px;
   font-size: 16px;
 }
+.areadata {
+  width: 390px;
+}
 .radio {
   margin-left: -100px;
 }
 .earaTop {
   width: 300px;
-  height: 45px;
+  height: 40px;
   background-color: #d5e2f0;
   line-height: 45px;
   padding-left: 10px;
@@ -584,21 +579,20 @@ export default {
   font-weight: 600;
 }
 .areaLeft {
-  margin: 50px 100px 0 100px;
+  margin: 50px 0px 0 20px;
   border-radius: 10px;
   display: inline-block;
   border: 1px solid #f2f2f2;
   border-radius: 5px;
-  box-shadow: 10px 10px 5px #ccc;
 }
 
 .areaRight {
   display: inline-block;
-  height: 25px;
-  width: 60%;
+  height: 35px;
+  width: 70%;
   position: absolute;
   border-bottom: 1px solid #cccccc;
-  margin: 50px 0px 0 50px;
+  margin: 55px 0px 0 30px;
 }
 .span_icon {
   float: right;
@@ -606,7 +600,7 @@ export default {
   font-size: 20px;
 }
 .el-form-item {
-  width: 500px;
+  width: 550px;
 }
 .el-form-item label {
   margin-left: 100px;

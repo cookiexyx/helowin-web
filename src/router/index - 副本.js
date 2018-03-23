@@ -15,222 +15,194 @@ Vue.use(Router)
 * hidden: true                   //当设置 true 的时候该路由不会再侧边栏出现 如401，login等页面(默认 false)
 * redirect: noredirect           //当设置 noredirect 的时候该路由不会在面包屑导航中出现
 * name:'router-name'             //设定路由的名字，一定要填写不然 使用 <keep-alive> 时会出现各种问题
-* alwaysShow: true               //当设置 true 的时候永远会显示根菜单，不设置的情况下只有当子路由个数大于一个时才会显示根菜单
-//当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式。只有一个时会将那个子路由当做根路由
-* noDropdown: true,       不下拉
+* alwaysShow: true             //当设置 true 的时候永远会显示根菜单，不设置的情况下只有当子路由个数大于一个时才会显示根菜单
+                               //当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式。只有一个时会将那个子路由当做根路由
 * meta : {
     roles: ['admin','editor']     //设置该路由进入的权限，支持多个权限叠加
     title: 'title'                //设置该路由在侧边栏和面包屑中展示的名字
     icon: 'svg-name'            //设置该路由的图标
     noCache: true               //如果设置为true ,则不会被 <keep-alive> 缓存(默认 false)
   }
+
 * 如果页面上面需要导航栏，这里的name和要根绝路由显示的页面export default{的中的name要一致}
 **/
 
 // 不需要权限验证的路由，都可以访问的
 export const constantRouterMap = [
-  {
-    path: '/login',
-    component: _import('login/index'),
-    children: []
-  },
-  {
-    path: '/404',
-    component: _import('404'),
-    children: []
-  },
-
+  { path: '/login', component: _import('login/index'), hidden: true },
+  { path: '/404', component: _import('404'), hidden: true },
   {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     name: '首页',
+    hidden: true,
     children: [
       {
         path: 'dashboard',
-        component: _import('dashboard/index')
+        component: _import('dashboard/index'),
+        meta: { role: ['admin'] }
       }
     ]
   },
-
   {
-    path: '/statistic',
+    path: '/message',
+    component: Layout,
+    name: '消息管理',
+    hidden: true,
+    children: [
+      {
+        path: 'message',
+        component: _import('message/index'),
+        meta: { role: ['admin'] }
+      }
+    ]
+  },
+  {
+    path: '/example',
     component: Layout,
     redirect: 'noredirect',
+    name: '统计分析',
     icon: 'zujian',
     children: [
       {
         path: 'index',
-        name: '统计分析',
-        component: _import('statistic/index')
+        name: 'Form',
+        icon: 'zonghe',
+        component: _import('page/form')
       }
     ]
   },
-
   {
-    path: '/instrument',
+    path: '/table',
     component: Layout,
     redirect: 'noredirect',
+    name: '仪表盘',
     icon: 'zonghe',
     children: [
       {
         path: 'index',
-        name: '仪表盘',
-        component: _import('instrument/index')
+        name: '经营1',
+        component: _import('page/form'),
+        meta: { role: ['admin'] }
       }
     ]
   },
-
   {
-    path: '/cockpit',
+    path: '/mcy',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'mcy',
     icon: 'wujiaoxing',
+    name: '驾驶舱',
+    // noDropdown: true,
     children: [
       {
-        path: 'index',
-        name: '驾驶舱',
-        component: _import('cockpit/index')
+        path: 'manage',
+        name: '经营',
+        component: _import('mcy/manage'),
+        meta: { role: ['admin'] }
       }
     ]
   },
-
   {
     path: '/Ferformance',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'ferformance',
     icon: 'email',
     name: '绩效考核',
+    // noDropdown: true,
     children: [
       {
-        path: 'index',
+        path: 'kpim',
         name: '绩效指标管理',
-        component: _import('ferformance/index')
+        component: _import('ferformance/kpim'),
+        meta: { role: ['admin'] }
       }
     ]
   },
-  // 系统设置模块
   {
     path: '/Dataset',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'dataset',
     icon: 'icons',
     name: '数据设置',
+    noDropdown: true,
     children: [
-      {
-        path: 'datasource',
-        name: '数据源管理',
-        component: _import('dataset/datasource')
-      },
+      //  { path: 'datasource', name: '数据源管理', component: _import('dataset/datasource'), meta: { role: ['admin'] }},
       {
         path: 'tablemanager',
         name: '数据表管理',
-        component: _import('dataset/tablemanager')
-      },
-      {
-        path: 'dataDomain',
-        name: '数据字典管理',
-        component: _import('dataset/dataDomain')
-      },
-      {
-        path: 'metadata',
-        name: '元数据列表',
-        component: _import('dataset/metadata')
-        // meta:{role}
+        component: _import('dataset/tablemanager'),
+        meta: { role: ['admin'] }
       }
     ]
   },
   {
     path: '/systemset',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'systemset',
     icon: 'EXCEL',
     name: '系统设置',
+    // noDropdown: true,
     children: [
       {
         path: 'usermanger',
         name: '用户管理',
-        component: _import('systemset/usermanger')
+        component: _import('systemset/usermanger'),
+        meta: { role: ['admin'] }
       },
       {
         path: 'rolesmanger',
         name: '角色管理',
-        component: _import('systemset/rolesmanger')
+        component: _import('systemset/rolesmanger'),
+        meta: { role: ['admin'] }
       },
-      // {
-      //   path: 'rulesmanger',
-      //   name: '规则管理',
-      //   component: _import('systemset/rulesmanger'),
-      //   meta: { role: ['admin'] }
-      // },
+      {
+        path: 'rulesmanger',
+        name: '规则管理',
+        component: _import('systemset/rulesmanger'),
+        meta: { role: ['admin'] }
+      },
+      {
+        path: 'authoritymanager',
+        name: '权限管理',
+        component: _import('systemset/authoritymanager'),
+        meta: { role: ['admin'] }
+      },
       {
         path: 'rolesandauthority',
         name: '角色权限关系管理',
-        component: _import('systemset/rolesandauthority')
-      },
-      {
-        path: 'menuManager',
-        name: '菜单管理',
-        component: _import('systemset/menuManager')
-      },
-      {
-        path: 'areaManager',
-        name: '区域管理',
-        component: _import('systemset/areaManager'),
-        meta: { role: ['amin'] }
-      },
-      {
-        path: 'organizaManager',
-        name: '机构管理',
-        component: _import('systemset/organizaManager'),
-        meta: { role: ['amin'] }
-      },
-      {
-        path: 'sectionManager',
-        name: '科室管理',
-        component: _import('systemset/sectionManager')
+        component: _import('systemset/rolesandauthority'),
+        meta: { role: ['admin'] }
       }
     ]
   },
-
-  // 个人信息模块
   {
     path: '/userinfo',
     component: Layout,
     redirect: 'noredirect',
     icon: 'xinrenzhinan',
+    // name: '个人信息',
+    noDropdown: true,
     children: [
       {
         path: 'index',
         name: '个人信息',
-        component: _import('userinfo/index')
+        component: _import('userinfo/index'),
+        meta: { role: ['admin'] }
       }
     ]
   },
-
-  // 消息管理模块
-  {
-    path: '/message',
-    component: Layout,
-    name: '消息管理',
-    children: [
-      {
-        path: 'message',
-        component: _import('message/index')
-      }
-    ]
-  },
-  { path: '*', redirect: '/404', hidden: true, children: [] }
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
-// 可以回退
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
 
-// 需要异步验证的路由
+// 异步验证的路由
 export const asyncRouterMap = [
   // {
   //   path: '/example',
@@ -243,6 +215,22 @@ export const asyncRouterMap = [
   //   ]
   // },
 
+  // {
+  //   path: '/table',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   name: 'Table',
+  //   icon: 'tubiao',
+  //   children: [{ path: 'index', name: 'Form', component: _import('page/form'), meta: { role: ['admin'] }}]
+  // },
+  // {
+  //   path: '/mcy',
+  //   component: Layout,
+  //   redirect: '/mcy/index',
+  //   icon: 'weixin',
+  //   noDropdown: true,
+  //   children: [{ path: 'index', name: 'Mcy', component: _import('mcy/index'), meta: { role: ['admin'] }}]
+  // },
   // {
   //   path: '/permission',
   //   component: Layout,
